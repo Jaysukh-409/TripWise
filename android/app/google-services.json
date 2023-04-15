@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "427844257561",
+    "project_id": "tripwise-final",
+    "storage_bucket": "tripwise-final.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427844257561:android:5ece49c6575e09cb232788",
+        "android_client_info": {
+          "package_name": "com.example.trip_wise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427844257561-57td1mec3g9amt2ipfkgrueo97f5d82p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhrh_Or0pxMVO_znEscSd3OPUJs06TdtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427844257561-57td1mec3g9amt2ipfkgrueo97f5d82p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

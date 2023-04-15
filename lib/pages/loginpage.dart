@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trip_wise/pages/signuppage.dart';
 
+import '../function/authlogin.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -14,6 +16,18 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailcontroller.dispose();
+    passwordcontroller.dispose();
+  }
+
+  void loginUser() async {
+    await AuthController()
+        .login(email: emailcontroller.text, password: passwordcontroller.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         RichText(
                           text: TextSpan(
-                            text: "Don't Have an Account ?",
+                            text: "Don't have an Account ?",
                             style: const TextStyle(
                                 color: Colors.blueGrey, fontSize: 15),
                             children: [
@@ -189,28 +203,31 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(
                           height: 40,
                         ),
-                        Container(
-                          width: 130,
-                          height: 50,
-                          margin: const EdgeInsets.symmetric(horizontal: 50),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: const LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              colors: [
-                                Colors.black,
-                                Colors.pink,
-                                Colors.yellow
-                              ],
+                        GestureDetector(
+                          onTap: loginUser,
+                          child: Container(
+                            width: 130,
+                            height: 50,
+                            margin: const EdgeInsets.symmetric(horizontal: 50),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              gradient: const LinearGradient(
+                                begin: Alignment.bottomLeft,
+                                colors: [
+                                  Colors.black,
+                                  Colors.pink,
+                                  Colors.yellow
+                                ],
+                              ),
                             ),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                            child: const Center(
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                         ),
