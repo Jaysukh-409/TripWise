@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trip_wise/pages/loginpage.dart';
-
 import '../function/authlogin.dart';
 
 class SignUpPage extends StatefulWidget {

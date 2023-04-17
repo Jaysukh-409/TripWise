@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../function/authlogin.dart';
+import 'package:trip_wise/pages/logoutpage.dart';
+import 'package:trip_wise/pages/landingpage.dart';
+import 'package:trip_wise/pages/searchpage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,38 +11,70 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void logoutUser() async {
-    AuthController().logout();
+  int _index = 0;
+  late PageController pagecontroller;
+
+  @override
+  void initState() {
+    super.initState();
+    pagecontroller = PageController();
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    pagecontroller.dispose();
+  }
+
+  void onTapNav(int index) {
+    pagecontroller.jumpToPage(index);
+  }
+
+  void onPageChanged(int index) {
+    setState(() {
+      _index = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: GestureDetector(
-          onTap: logoutUser,
-          child: Container(
-            width: 130,
-            height: 50,
-            margin: const EdgeInsets.symmetric(horizontal: 50),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              gradient: const LinearGradient(
-                begin: Alignment.bottomLeft,
-                colors: [Colors.black, Colors.pink, Colors.yellow],
-              ),
-            ),
-            child: const Center(
-              child: Text(
-                "LogOut",
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("TripWise"),
+        backgroundColor: Colors.pink,
+      ),
+      body: PageView(
+        controller: pagecontroller,
+        onPageChanged: onPageChanged,
+        children: const [
+          LandingPage(),
+          SearchPage(),
+          LogoutPage(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTapNav,
+        currentIndex: _index,
+        selectedItemColor: Colors.pink,
+        unselectedItemColor: Colors.blueGrey,
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
+        items: const [
+          BottomNavigationBarItem(
+            label: "Home",
+            icon: Icon(Icons.home_filled),
           ),
-        ),
+          BottomNavigationBarItem(
+            label: "Search",
+            icon: Icon(Icons.search),
+          ),
+          BottomNavigationBarItem(
+            label: "Logout",
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
     );
   }
